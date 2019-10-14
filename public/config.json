@@ -1,0 +1,27 @@
+[
+    {
+        "commit": "16ecab1875791e2b6ed0c9a6dae5a12a79d92120",
+        "diffs": [
+            "ROA1.ALM1",
+            "ftslhrlk01",
+            "CMT1.CGO1.CBR8"
+        ],
+        "changes": 1,
+        "date": "Wed Aug 7 13:44:36 2019"
+    },
+    {
+        "commit": "2abead4166d9534d258d9ffc4e2cea69a70e3d73",
+        "diffs": [],
+        "changes": 0,
+        "date": "Wed Aug 7 13:44:36 2019"
+    },
+    {
+        "commit": "56e05fced214c44a37759efa2dfc25a65d8ae98d",
+        "diffs": [
+            "avas02",
+            "CMT1.ZAR1.C4",
+        ],
+        "changes": -1,
+        "date": "Wed Aug 7 13:44:36 2019"
+    }
+]

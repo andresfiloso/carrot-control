@@ -1,0 +1,27 @@
+[
+    {
+        "commit": "16ecab1875791e2b6ed0c9a6dae5a12a79d92120",
+        "diffs": [
+            "config.json",
+            "app.js",
+            "package.json"
+        ],
+        "changes": 1,
+        "date": "Wed Aug 9 07:14:22 2019"
+    },
+    {
+        "commit": "2abead4166d9534d258d9ffc4e2cea69a70e3d73",
+        "diffs": [],
+        "changes": 0,
+        "date": "Wed Aug 7 13:44:36 2019"
+    },
+    {
+        "commit": "56e05fced214c44a37759efa2dfc25a65d8ae98d",
+        "diffs": [
+            "avas2",
+            "index.html"
+        ],
+        "changes": -1,
+        "date": "Wed Aug 5 07:44:13 2019"
+    }
+]

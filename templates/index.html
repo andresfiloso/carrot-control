@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Version Control</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./static/styles.css?q={{ range(1, 200) | random }}" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light top-bar fixed">
+      <a class="navbar-brand" href="/">
+        <img src="https://img.icons8.com/color/48/000000/merge-git.png" />
+        Version Control
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto"></ul>
+
+        <form class="form-inline">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search host"
+            aria-label="Search host"
+          />
+        </form>
+      </div>
+    </nav>
+
+    <dic class="container">
+      <div
+        class="float-right toast ml-auto"
+        role="alert"
+        data-delay="700"
+        data-autohide="false"
+      >
+        <div class="toast-header">
+          <strong class="mr-auto text-primary">Selected for diffs</strong>
+          <button
+            type="button"
+            id="dismiss-toast"
+            class="ml-2 mb-1 close"
+            data-dismiss="toast"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          <span id="selected_for_diffs"></span>
+        </div>
+      </div>
+    </dic>
+
+    <div class="container">
+      <div class="col-md-12">
+        <div class="row mt-5 justify-content-start">
+          <div class="col-md-3">
+            <input
+              type="text"
+              id="myFilter"
+              class="form-control"
+              onkeyup="cardFilter()"
+              placeholder="Filter"
+            />
+          </div>
+        </div>
+        <div id="myItems">
+          {% for commit in commits %}
+          <div class="commit row mt-2">
+            <div class="col-xl-10 col-md-9">
+              <div class="card bg-light mb-3">
+                <div class="commit-header card-header">{{ commit["date"] }}
+                    <a href="/config?q={{ commit['commit'] }}"><i class="pull-right fas fa-cog fa-lg"></i></a>
+                    <a href=""><i class="pull-right fas fa-code-branch fa-lg"></i></a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    {% if not commit['diffs'] %}
+                    <span class="badge badge-dark">
+                      no changes
+                    </span>
+                    {% elif commit['changes'] > 0%}
+                    <span class="badge badge-success">
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      {{ commit["diffs"] | length }} items
+                    </span>
+                    {% else %}
+                    <span class="badge badge-danger">
+                      <i class="fa fa-minus" aria-hidden="true"></i>
+                      {{ commit["diffs"] | length }} items
+                    </span>
+                    {% endif %}
+                  </h5>
+                  <div id="changes">
+                    {% for diff in commit['diffs'] %}
+                    <p class="changeItem">
+                      <i class="fas fa-chevron-right fa-sm"></i>
+                      <a href="/element?q={{ diff }}">{{ diff }}</a>
+                    </p>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="card-footer text-right">
+                        <small class="sha pull-right text-muted"><b>{{ commit["commit"][:6] }}</b>{{ commit["commit"][6:] }}</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-3">
+              <a href="/commit?q={{ commit['commit'] }}"
+                >
+                
+                <button type="button" class="btn-loader btnOption btn btn-outline-dark">
+                  Browse files
+                  
+                  <span style="display: none;" class="loader spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </button></a
+              >
+              <div class="custom-control custom-switch">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="Switchcommit{{ loop.index }}"
+                />
+                <label
+                  class="custom-control-label"
+                  for="Switchcommit{{ loop.index }}"
+                  >select for diffs</label
+                >
+              </div>
+              <hr />
+            </div>
+            <hr />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./static/index.js?q={{ range(1, 200) | random }}"></script>
+</html>

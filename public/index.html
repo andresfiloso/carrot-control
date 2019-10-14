@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Version Control</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light top-bar fixed">
+        <a class="navbar-brand" href="index.html">
+            <img src="https://img.icons8.com/color/48/000000/merge-git.png">
+            Version Control
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">     
+            </ul>
+            
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search host" aria-label="Search host">
+            </form>
+        </div>
+    </nav>
+
+    <dic class="container">
+            <div class="float-right toast ml-auto" role="alert" data-delay="700" data-autohide="false">
+                    <div class="toast-body">
+                        <strong class="mr-auto text-primary">Selected for diffs</strong><br>
+                        <span id="selected_for_diffs"></span>
+                    </div>
+                </div> 
+    </dic>
+
+    <div class="container">  
+              
+        <div class="col-md-12">
+
+            <div class="row mt-5 justify-content-start">
+                <div class="col-md-3">
+                    <input type="text" id="myFilter" class="form-control" onkeyup="cardFilter()" placeholder="Filter">
+                </div>
+
+  
+            </div>
+            <div id="myItems">
+                <div class="commit row mt-2" >
+                    <div class="col-xl-10 col-md-9">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header">Wed Aug 7 13:44:36 2019</div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="badge badge-success">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> 3 items 
+                                    </span>
+                                </h5>
+                                <div id="changes"> 
+                                    <p class="changeItem"><i class="fas fa-chevron-right fa-sm"></i> <a href="">ROA1.ALM1</a></p>
+                                    <p class="changeItem"><i class="fas fa-chevron-right fa-sm"></i> <a href="">ftslhrlk01</a></p>
+                                    <p class="changeItem"><i class="fas fa-chevron-right fa-sm"></i> <a href="">CMT1.CGO1.CBR8</a></p>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <small class="sha text-muted"><b>16ecab1</b>875791e2b6ed0c9a6dae5a12a79d92120</small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-xl-2 col-md-3">
+                        <a href="commit.html"><button type="button" class="btnOption btn btn-outline-dark">Browse files</button></a>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="Switchcommit1">
+                            <label class="custom-control-label" for="Switchcommit1">select for diffs</label>
+                        </div>
+                        <hr>
+                        
+                    </div>
+                    <hr>
+                </div>
+                
+                <div class="commit row mt-2">
+                    <div class="col-xl-10 col-md-9">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header">Wed Aug 7 13:44:36 2019</div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="badge badge-dark">
+                                        </i>no changes
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="card-footer text-right">
+                                <small class="sha text-muted "><b>2abead4</b>166d9534d258d9ffc4e2cea69a70e3d73</small>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-xl-2 col-md-3">
+                            <a href="commit.html"><button type="button" class="btnOption btn btn-outline-dark">Browse files</button></a>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="Switchcommit2">
+                            <label class="custom-control-label" for="Switchcommit2">select for diffs</label>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="commit row mt-2">
+                    <div class="col-xl-10 col-md-9">
+                        <div class="card bg-light mb-3 h-100">
+                            <div class="card-header">Wed Aug 7 13:44:36 2019</div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="badge badge-danger">
+                                        <i class="fa fa-minus" aria-hidden="true"></i> 2 items 
+                                    </span>
+                                </h5>
+                                <div id="changes"> 
+                                    <p class="changeItem"><i class="fas fa-chevron-right fa-sm"></i> <a href="">avas02</a></p>
+                                    <p class="changeItem"><i class="fas fa-chevron-right fa-sm"></i> <a href="">CMT1.ZAR1.C4</a></p>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <small class="sha text-muted "><b>56e05fc</b>ed214c44a37759efa2dfc25a65d8ae98d</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-3">
+                        <a href="commit.html"><button type="button" class="btnOption btn btn-outline-dark">Browse files</button></a>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="Switchcommit3">
+                            <label class="custom-control-label" for="Switchcommit3">select for diffs</label>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+</body>
+<script src="./index.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
+
